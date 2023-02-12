@@ -17,16 +17,10 @@ def countingValleys(n, s)
     vallies
 end
 
-fptr = File.open(ENV['OUTPUT_PATH'], 'w')
-
 n = gets.to_i
 
 s = gets.to_s.rstrip
 
 result = countingValleys n, s
 
-fptr.write result
-fptr.write "\n"
-
-fptr.close()
-
+puts result
