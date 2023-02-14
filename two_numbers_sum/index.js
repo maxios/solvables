@@ -1,4 +1,5 @@
-const two_numbers_sum = (list, n) => {
+// TODO: refactor and add the test cases
+module.exports = (list, n) => {
   let hash = {}
 
   for (let i = 0; i < list.length; i++) {
@@ -6,17 +7,18 @@ const two_numbers_sum = (list, n) => {
     const next = list[i+1];
     const complementaries = Object.keys(hash);
 
-    const compIndex = complementaries.indexOf(`${value}`);
+    const compIndex = complementaries.indexOf(value.toString());
 
     if (compIndex !== -1) {
-      console.log('the two numbers sum are: ', value, hash[complementaries[compIndex]])
-      return true
+      const complementNumber = hash[complementaries[compIndex]];
+
+      console.log('the two numbers sum are: ', value, complementNumber)
+      return [value, hash[complementaries[compIndex]]]
     }
 
     hash[n - value] = value
   }
 
-  return false
+  return []
 }
 
-two_numbers_sum([1, 2, 3, 4, 5, 6, 7, 8, 9], 15);
