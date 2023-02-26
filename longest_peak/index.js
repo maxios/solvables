@@ -5,28 +5,33 @@ function longestPeak(array) {
   if (array.length == 1) return 1;
   if (array.length < 2) return 0;
 
-  const peakIdx = [];
+  // The longest peak
+  let peakLength = 0;
+  
+  // The counter of the current peak
+  let currentPeakLength = 0;
 
-  // loop on every element and store the dip indices
-  for (i = 0; i < array.length; i++) {
-    // if the first element is peak, store the index
-    if (i == 0 && array[0] > array[1]) peakIdx.push(0)
-    // if the last element is peak, store the index
-    if (i == array.length - 1 && array[array.length - 1] > array[array.length - 2]) peakIdx.push(array.length -1)
+  // loop on every element
+  for (i = 1; i < array.length - 1; i++) {
+    const current = array[i];
+    const next = array[i+1];
+    const prev = array[i-1];
 
-    // otherwise
-    if (array[i+1] < array[i] && array[i-1] < array[i]) peakIdx.push(i)
+    const isPeak = current > prev && current > next
+
+    if (isPeak) {
+
+      // reset the counter
+      currentPeakLength = 0;
+      continue;
+    }
+
+    currentPeakLength++
+    peakLength = Math.max(peakLength, currentPeakLength)
   }
 
-  // Get the bigger gap between indices
-  let maxLength = 0;
-
-  for (i = 1; i < peakIdx.length; i++) {
-    maxLength = Math.max(maxLength, peakIdx[i] - peakIdx[i-1])
-  }
-
-  console.log(peakIdx.sort, peakIdx)
-  return maxLength + 1
+  console.log(peakLength, currentPeakLength)
+  return peakLength + 1
 }
 
 // Do not edit the line below.

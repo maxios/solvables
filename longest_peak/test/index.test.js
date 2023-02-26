@@ -3,7 +3,7 @@ const main = require('../index.js')
 
 describe('longestPeak', function () {
 	describe('', function () {
-		it.only('should return the longest peak length', function () {
+		it('should return the longest peak length', function () {
 			assert.equal(main.longestPeak([1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3]), 6)
 		})
 	})
